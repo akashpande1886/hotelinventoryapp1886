@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Room, RoomList } from './rooms';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { RoomsListComponent } from './rooms-list/rooms-list.component';
 
 @Component({
   selector: 'app-rooms',
-  imports: [NgIf, NgFor],
+  imports: [CommonModule, RoomsListComponent],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss',
 })
@@ -20,25 +21,43 @@ export class RoomsComponent implements OnInit {
     availableRooms: 10,
     bookedRooms: 5,
   };
-  roomList: RoomList[] = [
-    {
-      roomNumber: 1,
-      roomType: 'Deluxe Room',
-      amenities: 'AC, Free wifi, Bathroom,Kitchen',
-      price: 400,
-      photos: 'https://unsplash.com/s/photos/living-room',
-      checkinTime: new Date('11-Nov,2021'),
-      checkoutTime: new Date('12-Nov,2021'),
-    },
-    {
-      roomNumber: 2,
-      roomType: 'Deluxe Room',
-      amenities: 'AC, Free wifi, TV, Bathroom,Kitchen',
-      price: 500,
-      photos: 'https://unsplash.com/s/photos/living-room',
-      checkinTime: new Date('11-Nov,2021'),
-      checkoutTime: new Date('12-Nov,2021'),
-    },
-  ];
-  ngOnInit(): void {}
+  hideRoomList = false;
+  roomList: RoomList[] = [];
+  toggleList() {
+    this.hideRoomList = !this.hideRoomList;
+  }
+  ngOnInit(): void {
+    this.roomList = [
+      {
+        roomNumber: 1,
+        roomType: 'Deluxe Room',
+        amenities: 'AC, Free wifi, Bathroom,Kitchen',
+        price: 400,
+        photos: 'https://unsplash.com/s/photos/living-room',
+        checkinTime: new Date('11-Nov,2021'),
+        checkoutTime: new Date('12-Nov,2021'),
+        rating: 4.3,
+      },
+      {
+        roomNumber: 2,
+        roomType: 'Deluxe Room',
+        amenities: 'AC, Free wifi, TV, Bathroom,Kitchen',
+        price: 500,
+        photos: 'https://unsplash.com/s/photos/living-room',
+        checkinTime: new Date('11-Nov,2021'),
+        checkoutTime: new Date('12-Nov,2021'),
+        rating: 4.5,
+      },
+      {
+        roomNumber: 3,
+        roomType: 'Deluxe Room',
+        amenities: 'AC, Free wifi, TV, Bathroom,Kitchen',
+        price: 800,
+        photos: 'https://unsplash.com/s/photos/living-room',
+        checkinTime: new Date('11-Nov,2021'),
+        checkoutTime: new Date('12-Nov,2021'),
+        rating: 2.9,
+      },
+    ];
+  }
 }
